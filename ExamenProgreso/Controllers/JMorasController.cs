@@ -50,8 +50,6 @@ namespace ExamenProgreso.Controllers
         }
 
         // POST: JMoras/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nombre,NumeroTelefono,Sueldo,EsMayorDeEdad,FechaNacimiento")] JMora jMora)
@@ -59,7 +57,7 @@ namespace ExamenProgreso.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(jMora);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(); // Guardar cambios aquí
                 return RedirectToAction(nameof(Index));
             }
             return View(jMora);
@@ -82,8 +80,6 @@ namespace ExamenProgreso.Controllers
         }
 
         // POST: JMoras/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,NumeroTelefono,Sueldo,EsMayorDeEdad,FechaNacimiento")] JMora jMora)
@@ -98,7 +94,7 @@ namespace ExamenProgreso.Controllers
                 try
                 {
                     _context.Update(jMora);
-                    await _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync(); // Guardar cambios aquí
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -143,9 +139,9 @@ namespace ExamenProgreso.Controllers
             if (jMora != null)
             {
                 _context.JMora.Remove(jMora);
+                await _context.SaveChangesAsync(); // Guardar cambios aquí
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
